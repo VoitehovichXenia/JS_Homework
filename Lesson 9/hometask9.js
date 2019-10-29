@@ -61,7 +61,7 @@ function cloneObject(obj) {
 
     var clone;
 
-    if (obj == null || typeof obj !== 'object' ){
+    if (!(obj instanceof Object)){
 
         return obj;
 
@@ -125,7 +125,7 @@ var initialObj = {
 };
 
 var clonedObj = cloneObject(initialObj);
-console.log (clonedObj);
+
 clonedObj.object.object2.array2[1].name = 'Vasya';
 clonedObj.array.push(2);
 
@@ -142,7 +142,7 @@ function deepCompare(obj1, obj2) {
     if ( typeof obj1 === 'function' ){
 
         if (typeof obj2 !== "function" || toString(obj1) !== toString(obj2)){
-           arr[arr.length] = 1;
+           arr.push(false);
         }
 
     }
@@ -150,7 +150,7 @@ function deepCompare(obj1, obj2) {
     if (!(obj1 instanceof Object)){
 
         if (obj1 !== obj2) {
-            arr[arr.length] = 1;
+            arr.push(false);
         }
 
     }
@@ -158,7 +158,7 @@ function deepCompare(obj1, obj2) {
     if (obj1 instanceof Array){
 
         if ( !(obj2 instanceof Array) || obj1.length !== obj2.length ) {
-            arr[arr.length] = 1;
+            arr.push(false);
         }
 
         for (i = 0, len = obj1.length; i < len; i++){
@@ -170,7 +170,7 @@ function deepCompare(obj1, obj2) {
     if (obj1 !== null && typeof obj1 === 'object' && !obj1.length) {
 
         if (!(typeof obj2 === 'object' && obj2 !== null && !obj2.length)) {
-            arr[arr.length] = 1;
+            arr.push(false);
         }
 
         var numberOfProp1 = 0,
@@ -184,14 +184,14 @@ function deepCompare(obj1, obj2) {
         }
 
         if (numberOfProp1 !== numberOfProp2) {
-            arr[arr.length] = 1;
+            arr.push(false);
         }
 
         if (numberOfProp1 === numberOfProp2){
 
             for (var key in obj1) {
                 if (obj1.hasOwnProperty(key) !== obj2.hasOwnProperty(key)) {
-                    arr[arr.length] = 1;
+                    arr.push(false);
                 }
                 deepCompare(obj1[key], obj2[key]);
             }
@@ -209,11 +209,11 @@ function deepCompare(obj1, obj2) {
 }
 
 var initialObj = {
-    // string: 'Vasya',
-    // number: 30,
-    // boolean: true,
-    // undefined: undefined,
-    // null: null,
+    string: 'Vasya',
+    number: 30,
+    boolean: true,
+    undefined: undefined,
+    null: null,
     array: [1, 2, 3],
     object: {
         string2: 'Petrov',
@@ -228,11 +228,11 @@ var initialObj = {
 };
 
 var initialObj2= {
-    // string: 'Vasya',
-    // number: 30,
-    // boolean: true,
-    // undefined: undefined,
-    // null: null,
+    string: 'Vasya',
+    number: 30,
+    boolean: true,
+    undefined: undefined,
+    null: null,
     array: [1, 2, 3],
     object: {
         string2: 'Petrov',
@@ -249,5 +249,122 @@ initialObj2.object.object2.array2[1].name = 'Vasya';
 initialObj2.array.push(2);
 deepCompare(initialObj,initialObj2);
 
+function deepCompare(obj_1,obj_2) {
+
+    var arr = [];
+
+    deepCompareInternal(obj_1, obj_2);
+
+    function deepCompareInternal(obj1, obj2) {
+
+        if ( typeof obj1 === 'function' ){
+
+            if (typeof obj2 !== "function" || toString(obj1) !== toString(obj2)){
+                arr.push(false);
+            }
+
+        }
+
+        if (!(obj1 instanceof Object)){
+
+            if (obj1 !== obj2) {
+                arr.push(false);
+            }
+
+        }
+
+        if (obj1 instanceof Array){
+
+            if ( !(obj2 instanceof Array) || obj1.length !== obj2.length ) {
+                arr.push(false);
+            }
+
+            for (i = 0, len = obj1.length; i < len; i++){
+                deepCompareInternal(obj1[i], obj2[i]);
+            }
+
+        }
+
+        if (obj1 !== null && typeof obj1 === 'object' && !obj1.length) {
+
+            if (!(typeof obj2 === 'object' && obj2 !== null && !obj2.length)) {
+                arr.push(false);
+            }
+
+            var numberOfProp1 = 0,
+                numberOfProp2 = 0;
+
+            for (var a in obj1){
+                numberOfProp1++;
+            }
+            for (var b in obj2){
+                numberOfProp2++;
+            }
+
+            if (numberOfProp1 !== numberOfProp2) {
+                arr.push(false);
+            }
+
+            if (numberOfProp1 === numberOfProp2){
+
+                for (var key in obj1) {
+                    if (obj1.hasOwnProperty(key) !== obj2.hasOwnProperty(key)) {
+                        arr.push(false);
+                    }
+                    deepCompareInternal(obj1[key], obj2[key]);
+                }
+            }
+        }
+    }
+
+    if (!arr.length) {
+
+        return true;
+
+    } else if (arr.length) {
+
+        return false;
+    }
+}
 
 
+var initialObj = {
+    string: 'Vasya',
+    number: 30,
+    boolean: true,
+    undefined: undefined,
+    null: null,
+    array: [1, 2, 3],
+    object: {
+        string2: 'Petrov',
+        object2: {
+            array2: [{}, {}]
+        },
+        object3: {}
+    },
+    method: function() {
+        alert('Hello');
+    }
+};
+
+var initialObj2= {
+    string: 'Vasya',
+    number: 30,
+    boolean: true,
+    undefined: undefined,
+    null: null,
+    array: [1, 2, 3],
+    object: {
+        string2: 'Petrov',
+        object2: {
+            array2: [{}, {}]
+        },
+        object3: {}
+    },
+    method: function() {
+        alert('Hello');
+    }
+};
+initialObj2.object.object2.array2[1].name = 'Vasya';
+initialObj2.array.push(2);
+deepCompare(initialObj,initialObj2);
