@@ -4,7 +4,7 @@ function Animal(name){
     this.name = name;
 
     var self = this;
-    this.animalFeed = function () {
+    this.feed = function () {
 
         console.log('Насыпаем в миску ' + self.dailyNorm() + ' корма.');
 
@@ -35,9 +35,9 @@ function Cat(){
 
     Animal.apply(this, arguments);
 
-    var catFeed = this.animalFeed;
-    this.animalFeed = function () {
-        catFeed.call(this);
+    var catFeed = this.feed;
+    this.feed = function () {
+        catFeed();
         console.log('Кот доволен ^_^');
         return this;
     }
