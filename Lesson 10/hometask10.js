@@ -72,9 +72,9 @@ function divideArr(arr, subArrLength) {
 
     var tempArr = [];
 
-    for (i = 0, j = 0; i < arr.length; j++){
+    for (i = 0; arr.length ; i++){
 
-        tempArr[j] = arr.splice(i, subArrLength);
+        tempArr[i] = arr.splice(0, subArrLength);
     }
 
     return tempArr;
