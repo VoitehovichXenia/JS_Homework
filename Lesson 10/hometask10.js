@@ -40,7 +40,7 @@ function isPalindrom (string) {
 
     string = string.toLowerCase();
 
-    var arr = arr.string.split('').reduceRight(function(str, current){
+    var arr = string.split('').reduceRight(function(str, current){
         return str + current;
     }, '');
 
@@ -48,6 +48,10 @@ function isPalindrom (string) {
 }
 
 console.log(isPalindrom('шалаш'));
+console.log(isPalindrom('Level'));
+console.log(isPalindrom('работа'));
+
+
 
 
 /*Задание 4:
@@ -72,7 +76,7 @@ function divideArr(arr, subArrLength) {
 
     var tempArr = [];
 
-    for (i = 0; arr.length ; i++){
+    for (var i = 0; arr.length ; i++){      //это равноценно arr.length > 0, так короче, но менее понятно
 
         tempArr[i] = arr.splice(0, subArrLength);
     }

@@ -4,9 +4,9 @@
 function convertElementsToObject(arr) {
 
     return arr.map(function(element,i,arr){
-        var obj = {};
-        obj.name = element;
-        return obj;
+
+        return (element = {name: element});
+
     });
 
 }
@@ -73,7 +73,10 @@ function divideToSentences(text) {
     var temp;
 
     temp = text.split(/\.|\?|!/);
-    temp.pop();
+    if (temp[temp.length-1] === ''){
+        temp.pop();
+    }
+
 
     for (var i = 0; i < temp.length; i++){
         var arr;
@@ -100,7 +103,9 @@ function findRepeat(text) {
     var temp;
 
     text = text.toLowerCase().split(/[^a-zа-яё]+/g);
-    text.pop();
+    if (text[text.length-1] === ''){
+        text.pop();
+    }
 
     temp = text.map(function (element) {
         var counter = 0,

@@ -13,6 +13,7 @@ Animal.prototype._formatFoodAmount = function () {
 }
 
 Animal.prototype.dailyNorm = function (food) {
+
     if(!arguments.length) return this._formatFoodAmount();
 
     if (food < 50){
@@ -23,7 +24,7 @@ Animal.prototype.dailyNorm = function (food) {
     }
 
     this._foodAmount = food;
-    this._formatFoodAmount();
+
 }
 
 Animal.prototype.feed = function () {
@@ -31,10 +32,11 @@ Animal.prototype.feed = function () {
 }
 
 function Cat(){
+
     Animal.apply(this, arguments);
 }
 
-Cat.prototype = inherit(Animal.prototype);
+Cat.prototype = Object.create(Animal.prototype);
 Cat.prototype.constructor = Cat;
 
 Cat.prototype.feed = function () {
