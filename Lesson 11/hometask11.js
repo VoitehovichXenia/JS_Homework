@@ -5,7 +5,7 @@ function convertElementsToObject(arr) {
 
     return arr.map(function(element,i,arr){
 
-        return (element = {name: element});
+        return {name: element};
 
     });
 
