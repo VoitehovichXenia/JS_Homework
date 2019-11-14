@@ -1,28 +1,22 @@
 /*Задание 1:
 Написать функцию, принимающую массив имен и возвращающую массив объектов вида {name: 'Vasya'}.*/
 
-function convertElementsToObject(arr) {
-
+function convertElementsToObjects(arr) {
     return arr.map(function(element,i,arr){
-
         return {name: element};
-
     });
-
 }
 
-console.log(convertElementsToObject(['Xania', 'Ann', 'Jamie', 'Charlie']));
+console.log(convertElementsToObjects(['Xania', 'Ann', 'Jamie', 'Charlie']));
 
 /*Задание 2:
 Написать функцию, принимающую массив вида ['00', '13', '24'] и возвращающую строку "Текущее время : 00 : 13 : 24".
 Для решения использовать перебирающий метод массивов.*/
 
 function convertToTime(arr) {
-
     return arr.reduce(function (result, current) {
         return result + ' : ' + current;
     }, 'Текущее время');
-
 }
 
 console.log(convertToTime(['00','13','14']));
@@ -108,31 +102,23 @@ function findRepeat(text) {
     }
 
     temp = text.map(function (element) {
-        var counter = 0,
-            obj= {};
+        var counter = 0;
         for (var i = 0; i < text.length; i++){
             if (element === text[i]) counter++;
         }
-        obj.name = element;
-        obj.number = counter;
-        return obj;
+        return {name: element, number: counter};
     });
 
     function compareNumber(first,second) {
-        if (first.number > second.number) return 1;
-        if (first.number < second.number) return -1;
+        if (first.number > second.number) return -1;
+        if (first.number < second.number) return 1;
         return 0;
     }
 
     temp.sort(compareNumber);
 
-    return 'Максимальное число повторений у слова "'+ temp[temp.length - 1].name + '" - ' + temp[temp.length - 1].number;
+    return 'Максимальное число повторений у слова "'+ temp[0].name + '" - ' + temp[0].number;
 
 }
 
 console.log(findRepeat('Я все время говорю только о себе! Все я да я!'));
-console.log(findRepeat('Олень-северное животное.В летнее время оленям в тайге жарко,а в горах даже в июле холодно.\n' +
-    'Олень как бы создан для северных просторов,жёсткого ветра,длинных морозных ночей.Олень легко бежит вперёд по тайге,'+
-    'подминает под себя кусты,переплывает быстрые реки.'+
-    'Олень не тонет,потому что каждая его шерстинка-это длинная трубочка,которую внутри наполняет воздух..\n' +
-    'Нос у оленя покрыт серебристой шёрсткой.Если бы шерсти на носу не было,олень бы его отморозил '));
