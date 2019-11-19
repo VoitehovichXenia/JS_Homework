@@ -1,0 +1,45 @@
+body{
+    margin: 10px;
+}
+
+.content{
+    margin: 0 10px;
+}
+
+/*Input*/
+
+.block{
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 0;
+ }
+
+.text{
+    margin: 0;
+    padding-right: 10px;
+}
+
+.input{
+    size: 15;
+}
+
+.button{
+    margin: 10px auto;
+}
+
+.table{
+    border-collapse: collapse;
+
+}
+.light_cell {
+    height: 50px;
+    width: 50px;
+    border: solid 1pt #95e1d3;
+    background: #95e1d3;
+}
+.dark_cell {
+    height: 50px;
+    width: 50px;
+    border: solid 1pt #f38181;
+    background: #f38181;
+}
