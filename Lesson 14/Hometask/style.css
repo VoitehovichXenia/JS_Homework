@@ -1,17 +1,21 @@
-body{
-    margin: 10px;
-}
 
 .content{
-    margin: 0 10px;
+    width: 20%;
+    padding: 10px;
+    margin: 20px auto;
+    border: solid 1pt #f38181;
+
 }
 
 /*Input*/
 
 .block{
+    width: 82%;
+    margin: 0 auto;
     display: flex;
     justify-content: flex-start;
     padding: 10px 0;
+
  }
 
 .text{
@@ -19,18 +23,18 @@ body{
     padding-right: 10px;
 }
 
-.input{
-    size: 15;
+.button{
+    margin: 0 40%;
 }
 
-.button{
-    margin: 10px auto;
-}
+
+/*Table*/
 
 .table{
     border-collapse: collapse;
-
+    margin: 0 auto;
 }
+
 .light_cell {
     height: 50px;
     width: 50px;
