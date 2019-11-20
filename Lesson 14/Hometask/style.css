@@ -1,6 +1,6 @@
 
 .content{
-    width: 20%;
+    width: 220px;
     padding: 10px;
     margin: 20px auto;
     border: solid 1pt #f38181;
@@ -10,7 +10,7 @@
 /*Input*/
 
 .block{
-    width: 82%;
+    width: 85%;
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;
@@ -18,7 +18,7 @@
 
  }
 
-.text{
+.label{
     margin: 0;
     padding-right: 10px;
 }
@@ -32,6 +32,7 @@
 
 .table{
     border-collapse: collapse;
+    border: solid 3px #c65e5c;
     margin: 0 auto;
 }
 

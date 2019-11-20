@@ -18,12 +18,12 @@ for (var i = 0; i < inputElements.length; i++){
 }
 
 function buttonDisableValue(){
-    return  button[0].disabled = !(inputElements[0].value && inputElements[1].value);
+    return  button[0].disabled = !(inputElements[0].value.trim() || inputElements[1].value.trim()) || !(inputElements[0].value && inputElements[1].value);
 }
 
 function chekInputValue() {
     for (var j = 0; j < inputElements.length; j++){
-        if (inputElements[j].value <= 10 && inputElements[j].value >= 1) break;
+        if (+(inputElements[j].value) <= 10 && +(inputElements[j].value) >= 1) break;
         button[0].disabled = true;
         clearInputs();
         alert ('Please white in the forms below number from 1 to 10!');
