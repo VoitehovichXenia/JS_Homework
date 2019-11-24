@@ -1,4 +1,4 @@
-var table = document.getElementsByClassName('table'),
+var table = document.getElementsByTagName('tbody'),
     allRows = table[0].getElementsByTagName('tr'),
     addRow = allRows[allRows.length - 1];
 
