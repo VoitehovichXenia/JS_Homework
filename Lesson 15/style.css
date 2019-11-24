@@ -1,0 +1,22 @@
+.table{
+    border-collapse: collapse;
+    border: solid 1px #000000;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.cell{
+    width: 33%;
+    padding: 15px 5px;
+    height: 25px;
+    border: solid 1px #000000;
+}
+
+.cell--main{
+    font-size: 20px;
+    font-family: 'Calibri', sans-serif;
+}
+
+.input{
+    font-size: 16px;
+}
