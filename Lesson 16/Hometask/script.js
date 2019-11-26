@@ -35,7 +35,7 @@ function getRequest() {
     if (localStorage.getItem('usersData')) return drawUserList();
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://reqres.in/auyfkiyfhukpi/users?page=2',true);
+    xhr.open('GET', 'https://reqres.in/api/users?page=2',true);
     xhr.send();
     xhr.onloadend = function () {
 
