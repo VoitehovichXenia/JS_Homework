@@ -1,0 +1,127 @@
+body{
+    background: antiquewhite;
+    font-family: 'Calibri', sans-serif;
+}
+
+.container{
+    width: 100%;
+    max-width: 900px;
+    min-width: 500px;
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+}
+
+.container--second{
+    padding: 0;
+    margin: 0 5px;
+}
+
+
+/*------Get Users Info--------*/
+
+.button_container{
+    line-height: 4em;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.button{
+    font-size: 18px;
+    color: #333333;
+    background: #fce38a;
+    border: solid 0;
+    padding: 5px 7px;
+    transition: background-color 0.3s linear, color 0.3s linear;
+    margin: auto;
+    border-radius: 5px;
+    min-width: 120px;
+}
+
+.button:hover{
+    color: #fff;
+    background: #f38181;
+}
+
+/*------Users Tabs--------*/
+
+.users{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.user_tab{
+    max-width: 150px;
+    min-width: 80px;
+    max-height: 100px;
+    min-height: 50px;
+    background: #fce38a;
+    color: #333333;
+    text-align: center;
+    padding: 10px 0 0 0;
+    margin: 5px 10px 0 5px;
+    border-radius: 15px 0 0 0;
+    font-size: 18px;
+    line-height: 3em;
+}
+
+.user_tab--active{
+    background: #fff;
+    color: #f38181;
+}
+
+
+/*------Users Info--------*/
+
+.users_info{
+    background: #fff;
+    color: #f38181;
+    min-width: 505px;
+    max-width: 900px;
+    min-height: 200px;
+    max-height: 500px;
+    padding: 70px 20px 0 20px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 150px 7fr;
+}
+
+.text_info{
+    font-weight: bold;
+    color: #333333;
+}
+
+/*------Error message--------*/
+
+.body{
+    background: #fce38a;
+}
+
+.error{
+    min-width: 150px;
+    max-height: 150px;
+    min-height: 100px;
+    text-align: center;
+    padding: 20px 10px 0 10px;
+    position: absolute;
+    left: 40%;
+    right: 40%;
+    top: 40%;
+    color: #fff;
+    background: #f38181;
+    font-family: 'Calibri', sans-serif;
+    font-size: 16px;
+    border-radius: 15px;
+}
+
+.button--google{
+    background: #95e1d3;
+    font-size: 14px;
+    margin: 7px auto;
+}
+
+
+
