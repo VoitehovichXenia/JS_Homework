@@ -8,7 +8,7 @@
 // - обязательная часть .com
 // Хорошо протестировать регулярное выражение.
 
-var emailTemplate = /^[a-z]{3,10}_[a-z]{3,10}-?\d{0,4}@([a-z\d]-?\.?){2,20}.com$/i;
+var emailTemplate = /^[a-z]{3,10}_[a-z]{3,10}-?\d{0,4}@[a-z\d]{1,10}-?\.?[a-z\d]{1,10}\.com$/;
 
 console.log(emailTemplate.test('name_surname-1234@gmail.com'));
 console.log(emailTemplate.test('name_surname@g-mail.com'));
@@ -72,10 +72,11 @@ isItPhoneNumber('8033-666');
 function countVowelLetters(text) {
 
     var vowelsTemplate = new RegExp('[уеаоэяиюaeyuio]','igm');
-    text = text.match(vowelsTemplate).length;
-    console.log('Количество гласных в тексте: ' + text);
+    text = (text.match(vowelsTemplate)) ? text.match(vowelsTemplate).length : 0;
+    return console.log('Количество гласных в тексте: ' + text);
 
 }
 
-countVowelLetters('Ах, вот оно как!'); //5
+countVowelLetters('Шла Саша по шоссе И сосала сУшку'); // 12
 countVowelLetters('Wow, it is great!\n' + 'I\'m so happy for you!'); //13
+countVowelLetters('BMW');
