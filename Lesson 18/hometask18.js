@@ -8,7 +8,7 @@
 // - обязательная часть .com
 // Хорошо протестировать регулярное выражение.
 
-var emailTemplate = /^[a-z]{3,10}_[a-z]{3,10}-?\d{0,4}@[a-z\d]{1,10}-?\.?[a-z\d]{1,10}\.com$/;
+var emailTemplate = /^[a-z]{3,10}_[a-z]{3,10}(-\d{4})?@[a-z\d]{1,10}[-.]?[a-z\d]{1,10}\.com$/i;
 
 console.log(emailTemplate.test('name_surname-1234@gmail.com'));
 console.log(emailTemplate.test('name_surname@g-mail.com'));
@@ -37,14 +37,14 @@ console.log(emailTemplate.test('name_surname-1234@g-ma..il.com'));
 function isItPhoneNumber(phoneNumber) {
 
     phoneNumber = phoneNumber.trim();
-    var phoneTemplate = /^(\+?375|8-?0)-?(25|29|33|44|17)-?\d{3}(-?\d{2}){2}$/;
+    var phoneTemplate = /^(\+?375-?|8-?0)(25|29|33|44|17)-?\d{3}(-?\d{2}){2}$/;
     console.log(phoneTemplate.test(phoneNumber));
 
 }
 
 isItPhoneNumber('+375-25-777-77-77');
 isItPhoneNumber('375299999999');
-isItPhoneNumber('8-044-444-44-44');
+isItPhoneNumber('8-0-44-444-44-44');
 isItPhoneNumber('8033-6666666');
 
 isItPhoneNumber('+8-044-444-44-44');
