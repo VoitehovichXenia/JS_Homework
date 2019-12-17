@@ -6,7 +6,6 @@ var  body = document.getElementsByTagName('body')[0],
 secondBlock.classList.add('container--second');
 body.appendChild(secondBlock);
 
-localStorage.clear();
 
 var getUsersInfo = document.getElementsByClassName('button')[0];
 
@@ -32,7 +31,10 @@ container.onclick = function (event) {
 
 function getRequest() {
 
-    if (localStorage.getItem('usersData')) return drawUserList();
+    if (localStorage.getItem('usersData')){
+        usersData = JSON.parse(localStorage.getItem('usersData')).data;
+        return drawUserList();
+    }
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://reqres.in/api/users?page=2',true);
