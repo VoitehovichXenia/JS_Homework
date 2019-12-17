@@ -9,11 +9,9 @@
 // соответствующие значения, а все, что осталось - в объект obj.
 
 {
-    const object = {a: 1, b: 2, c: 3, d: 4};
-    let {a,b,...obj} = object;
+    let {a,b,...obj} = {a: 1, b: 2, c: 3, d: 4};
     console.log(a, b, obj);
 }
-
 
 //     Задание 2:
 // Запросить у пользователя имя и сохранить его в переменную.
@@ -25,10 +23,13 @@
 
 {
     let name = prompt('Please enter your name in the field below.', 'name');
-    const object = {name,
-        sayHi: function(){
-        return `Hi, ${object.name}`;
-        }};
+    const object = {
+        name,
+        sayHi () {
+             return `Hi, ${this.name}!`;
+         }
+    };
+
     object.sayHi();
 }
 
@@ -109,9 +110,7 @@
         text = text.toLowerCase().split('');
         const vowelLetters = ['а', 'я', 'ы', 'и', 'о', 'ё', 'у', 'ю', 'э', 'е', 'a', 'e', 'i', 'o', 'u', 'y'];
         let counter = 0;
-        text.forEach( letter => {
-            counter = (vowelLetters.includes(letter)) ? ++counter : counter;
-        });
+        text.forEach( letter => { vowelLetters.includes(letter) && ++counter });
         return counter;
     }
 

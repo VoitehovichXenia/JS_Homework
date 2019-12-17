@@ -1,35 +1,51 @@
-var inputElements = document.getElementsByTagName('input'),
-    body = document.getElementsByTagName('body'),
-    button = document.getElementsByTagName('button');
+var form = document.getElementsByClassName('content')[0],
+    xInput = document.getElementById('x'),
+    yInput = document.getElementById('y'),
+    body = document.body,
+    button = document.getElementsByTagName('button')[0];
 
-button[0].setAttribute('disabled', 'true');
-button[0].addEventListener('click', chekInputValue, false);
-button[0].addEventListener('click', drawChessPad,false);
+button.disabled = 'true';
+form.addEventListener('keyup', disableButton, false);
+button.addEventListener('click', checkInputValue, false);
 
-function clearInputs() {
-    for (var m = 0; m < inputElements.length;m++){
-        inputElements[m].value = null;
+function disableButton(){
+    button.disabled = !(xInput.value.trim() && yInput.value.trim());
+}
+
+function checkInputValue() {
+    var xValue = +xInput.value,
+        yValue = +yInput.value;
+
+    if(!isValidInputValue(xValue)){
+        clearInputs([xInput]);
+        errorMessage(xInput);
+    }
+    if(!isValidInputValue(yValue)){
+        clearInputs([yInput]);
+        errorMessage(yInput);
+    }
+
+    if(isValidInputValue(xValue) && isValidInputValue(yValue)) return drawChessPad();
+}
+
+function isValidInputValue(value) {
+    return value && isInteger(value) && value >= 1 && value <= 10;
+}
+
+function isInteger(value) {
+    return value === parseInt(value);
+}
+
+function clearInputs(inputs) {
+    for (var m = 0; m < inputs.length; m++){
+        inputs[m].value = null;
     }
 }
 
-for (var i = 0; i < inputElements.length; i++){
-    clearInputs();
-    inputElements[i].addEventListener('keyup',buttonDisableValue,false);
+function errorMessage(input) {
+    return alert ('Введице целое число от 1 до 10 в поле ' + input.id.toUpperCase());
 }
 
-function buttonDisableValue(){
-    return  button[0].disabled = !(inputElements[0].value.trim() || inputElements[1].value.trim()) || !(inputElements[0].value && inputElements[1].value);
-}
-
-function chekInputValue() {
-    for (var j = 0; j < inputElements.length; j++){
-        if (+(inputElements[j].value) <= 10 && +(inputElements[j].value) >= 1) break;
-        button[0].disabled = true;
-        clearInputs();
-        alert ('Please white in the forms below number from 1 to 10!');
-        break;
-    }
-}
 
 function drawChessPad() {
 
@@ -40,14 +56,14 @@ function drawChessPad() {
     var table = document.createElement('table');
     table.classList.add('table');
 
-    for (var i = 1, valY = +(inputElements[1].value); i <= valY; i++) {
+    for (var i = 1, valY = +yInput.value; i <= valY; i++) {
 
             var row = document.createElement('tr'),
                 orderForDraw = 0;
 
             if (i % 2 === 0) orderForDraw = 1;
 
-            for (var j = +(inputElements[0].value); j >= 1; j--) {
+            for (var j = +xInput.value; j >= 1; j--) {
                 var cell = document.createElement('td');
                 orderForDraw++;
                 cell.classList.add('light_cell');
@@ -61,9 +77,9 @@ function drawChessPad() {
 
     }
 
-    clearInputs();
+    clearInputs([xInput, yInput]);
 
-    body[0].appendChild(table);
+    body.appendChild(table);
 
     table.onclick = function (event) {
 
