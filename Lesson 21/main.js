@@ -18,12 +18,8 @@
 {
     function filterArrOfObj(arr){
         return {
-            ['Пользователи младше 40']: arr.filter( item => {
-                return item.age < 40;
-            }),
-            ['Пользователь с именем Федор']: arr.find( item => {
-                return item.name.startsWith('Fedor');
-            })
+            ['Пользователи младше 40']: arr.filter(item => item.age < 40),
+            ['Пользователь с именем Федор']: arr.find(item => item.name.startsWith('Fedor'))
         };
     }
 
@@ -43,12 +39,10 @@
 
 {
     function covertToObjects(names) {
-        return names.map( (name,i) => {
-            return {[`Пользователь ${i+1}`]: name};
-        });
+        return names.map((name, i) => ({[`Пользователь ${ i + 1 }`] : name }));
     }
 
-    covertToObjects(['Vasya','Ivan','Fedor']);
+    covertToObjects( ['Vasya', 'Ivan', 'Fedor'] );
 }
 
 // Задание 9:
@@ -74,9 +68,7 @@
     ];
 
     function concatObjects(arr){
-        return arr.reduce((previousItem,currentItem) =>{
-            return Object.assign(previousItem,currentItem);
-        }, {});
+        return arr.reduce((previousItem, currentItem) => Object.assign(previousItem, currentItem), {});
     }
 
     concatObjects(info);
@@ -91,34 +83,33 @@
             this.name = name;
             this._foodAmount = 50;
         }
+
         _formatFoodAmount(){
-            return this._foodAmount + ' гр.';
+            return `${this._foodAmount} гр.`;
         }
+
         dailyNorm(amount){
             if (!arguments.length) return this._formatFoodAmount();
 
             if (amount < 50 || amount > 500) {
                 throw new Error('Недопустимое количество корма.');
             }
-
             this._foodAmount = amount;
         }
+
         feed(){
-            console.log('Насыпаем в миску ' + this.dailyNorm() + ' корма.');
+            console.log(`Насыпаем в миску ${this.dailyNorm()} корма.`);
         }
 
     }
 
     class Cat extends Animal{
-        constructor (name){
-            super(name);
-        }
-        feed (){
+        feed(){
             super.feed();
             console.log('Кот доволен ^_^');
             return this;
         }
-        stroke (){
+        stroke(){
             console.log('Гладим кота.');
             return this;
         }
@@ -136,27 +127,19 @@
 // Написать функцию-промис, которая принимает в себя 2 числа и выводит в консоль целые числа, входящие в диапазон,
 // каждую секунду. После окончания работы интервала в консоль должно вывестись последнее запомненное число.
 {
-    function showIntegerNumbersFromInterval (beginNumber,endNumber) {
+    function showIntegerNumbersFromInterval (beginNumber, endNumber) {
 
         return new Promise((resolve,reject) => {
-
-            if (beginNumber > endNumber) {
-                [beginNumber, endNumber] = [endNumber,beginNumber];
-            }
-
             if (parseInt(beginNumber) === parseInt(endNumber)) return reject('В интервале нет целых чисел');
+
+            if (beginNumber > endNumber) [beginNumber, endNumber] = [endNumber, beginNumber];
 
             beginNumber = Math.ceil(beginNumber);
             endNumber = Math.floor(endNumber);
 
             let timerId = setInterval((currentNumber) => {
                 currentNumber = beginNumber;
-                if (currentNumber > endNumber){
-                    clearInterval(timerId);
-                    resolve(endNumber);
-                } else {
-                    console.log(beginNumber++);
-                }
+                currentNumber > endNumber ? !clearInterval(timerId) && resolve(endNumber) : console.log(beginNumber++);
             }, 1000);
 
         });
@@ -164,27 +147,6 @@
     }
 
     showIntegerNumbersFromInterval(2.5,5)
-        .then(endNumber => console.log(`Последнее запомненное число: ${endNumber}`))
+        .then(lastNumber => console.log(`Последнее запомненное число: ${lastNumber}`))
         .catch(errorMessage => console.log(`Возникла ошибка: ${errorMessage}`));
-
-    showIntegerNumbersFromInterval(5,4.7)
-        .then(endNumber => console.log(`Последнее запомненное число: ${endNumber}`))
-        .catch(errorMessage => console.log(`Возникла ошибка: ${errorMessage}`));
-
-    showIntegerNumbersFromInterval(2.5,2.6)
-        .then(endNumber => console.log(`Последнее запомненное число: ${endNumber}`))
-        .catch(errorMessage => console.log(`Возникла ошибка: ${errorMessage}`));
-
-    //для быстрой проверки
-    // showIntegerNumbersFromInterval(2.5,5)
-    //     .then(endNumber => {
-    //         console.log(`Последнее запомненное число: ${endNumber}`);
-    //         return showIntegerNumbersFromInterval(5,4.7);
-    //     })
-    //     .then(endNumber => {
-    //         console.log(`Последнее запомненное число: ${endNumber}`);
-    //         return showIntegerNumbersFromInterval(2.5,2.6);
-    //     })
-    //     .catch(errorMessage => console.log(`Возникла ошибка: ${errorMessage}`));
-
 }
